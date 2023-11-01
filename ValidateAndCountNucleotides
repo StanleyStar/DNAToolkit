@@ -1,0 +1,22 @@
+# DNA toolkit/code testing file
+
+from ValidateAndCountNucleotides import *
+
+# Let's validate our DNA sequence
+rndDNAstr = "AtccGTTAC"
+print(validateSeq(rndDNAstr))
+errorDNAstr = "AtccGTTACX"
+print(validateSeq(errorDNAstr))
+
+# How can we generate random sequences?! Let's create a random DNA sequence for testing
+import random
+randDNAStr = ''.join([random.choice(Nucleotides)
+                      for nuc in range(20)])
+print(validateSeq(randDNAStr))
+
+# Testing the nucleotide count function
+print(countNucFrequency(randDNAStr))
+
+# To make sure that you are counting the validated sequence, do this:
+DNAstr = validateSeq(rndDNAstr)
+print(countNucFrequency(DNAstr))
