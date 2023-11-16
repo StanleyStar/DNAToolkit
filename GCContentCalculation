@@ -1,0 +1,13 @@
+# GC content in DNA/RNA sequence
+
+def gc_content(seq):
+    return round((seq.count('C') + seq.count('G')) / len(seq) * 100)
+
+def gc_content_subsec(seq, k=20):
+    """GC Content in DNA/RNA sub-sequence length k, k=20 by default"""
+    res = []
+    for i in range(0, len(seq) - k + 1, k):
+        subseq = seq[i:i + k]
+        res.append(gc_content(subseq))
+        return res
+# NOTE: This function didn't work for me. And I can't figure it out
