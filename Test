@@ -1,0 +1,38 @@
+# DNA toolkit/code testing file
+
+from ValidateAndCountNucleotides import *
+from Structures import *
+
+# Let's validate our DNA sequence
+rndDNAstr = "AtccGTTAC"
+print(validateSeq(rndDNAstr))
+errorDNAstr = "AtccGTTACX"
+print(validateSeq(errorDNAstr))
+
+# How can we generate random sequences?! Let's create a random DNA sequence for testing
+import random
+randDNAStr = ''.join([random.choice(Nucleotides)
+                      for nuc in range(20)])
+print(validateSeq(randDNAStr))
+
+# Testing the nucleotide count function
+print(countNucFrequency(randDNAStr))
+
+# To make sure that you are counting the validated sequence, do this:
+DNAstr = validateSeq(rndDNAstr)
+print(countNucFrequency(DNAstr))
+
+# To convert DNA string to RNA
+from TranscriptionAndReverseComplement import *
+print(transcription(DNAstr))
+
+# Reverse complement
+print(reverse_complement(DNAstr))
+print(new_reverse_complement(DNAstr))
+
+# GC content calculation
+from GCContentCalculation import *
+print("GC Content is:",  gc_content(DNAstr),"%")
+
+# GC content in subsection
+print("GC Content in subsection k=5:", gc_content_subsec(DNAstr, k=5))
