@@ -1,0 +1,16 @@
+# Let's write a function to generate open reading frames. This function will replicate the unction of a ribosome.
+from Structures import *
+# We will be calling our translation function and reverse complement function in order to define the orf function.
+from TranslationAndCodonUsage import *
+from TranscriptionAndReverseComplement import *
+
+def gen_reading_frames(seq):
+    """Generate the six reading frames of a DNA sequence, including the reverse complement"""
+    frames = []
+    frames.append(translate_seq(seq, 0))
+    frames.append(translate_seq(seq, 1))
+    frames.append(translate_seq(seq, 2))
+    frames.append(translate_seq(reverse_complement(seq), 0))
+    frames.append(translate_seq(reverse_complement(seq), 1))
+    frames.append(translate_seq(reverse_complement(seq), 2))
+    return frames
