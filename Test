@@ -36,3 +36,18 @@ print("GC Content is:",  gc_content(DNAstr),"%")
 
 # GC content in subsection
 print("GC Content in subsection k=5:", gc_content_subsec(DNAstr, k=5))
+
+# To translate DNAs to aminoacids
+from TranslationAndCodonUsage import *
+NewDNAstr = "ACCTAGATATAGACATAGGGCTTCGATATGCGTCTCTGGCTCTGGATATATGGGCCTCGATAGCTAGATCGATGGATGGGAAGT"
+print("Aminoacids sequence from DNA:", translate_seq(NewDNAstr, 0))
+
+# Codon frequency calculation (ie codon usage)
+print("Codon frequency (L):", codon_usage(NewDNAstr, "L"))
+
+# Generating ORF
+from OpenReadingFrames import *
+
+print("Reading frames:")
+for frame in gen_reading_frames(NewDNAstr):
+   print(frame)
