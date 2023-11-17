@@ -1,0 +1,22 @@
+# To translate DNA sequences
+from Structures import *
+from collections import Counter
+# NB: 'Counter' is a method that is built-in to Python. Python has this cool module called 'collections'. We use some of that functionality. 'Counter' method is one of them.
+def translate_seq(seq, init_pos=0):
+    """Translates a DNA sequence into an aminoacid sequence"""
+    return [DNA_Codons[seq[pos:pos + 3]] for pos in range(init_pos, len(seq) - 2, 3)]
+
+# This second function is for codon usage. It is more a statistical function. We are giving it a string of DNA or RNA and telling it, can you please count the frequencies/occurences of a particular aminoacid we are going to parse to you.
+
+def codon_usage(seq, aminoacid):
+    """Provides the frequency of each codon encoding a given aminoacid in a DNA sequence"""
+    tmpList = []
+    for i in range(0, len(seq) - 2, 3):
+        if DNA_Codons[seq[i:i + 3]] == aminoacid:
+            tmpList.append(seq[i:i + 3])
+
+    freqDict = dict(Counter(tmpList))
+    totalWight = sum(freqDict.values())
+    for seq in freqDict:
+        freqDict[seq] = round(freqDict[seq] / totalWight, 2)
+        return freqDict
