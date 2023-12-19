@@ -1,22 +1,24 @@
-# DNA toolkit/code testing file
+Nucleotides = ["A", "C", "G", "T"]
 
-from ValidateAndCountNucleotides import *
+# Check the sequence to make sure it is a DNA string. We will define a validate sequence function.
+def validateSeq(dna_seq):
+    tmpseq = dna_seq.upper()
+    for nuc in tmpseq:
+        if nuc not in Nucleotides:
+            return False
+    return tmpseq
 
-# Let's validate our DNA sequence
-rndDNAstr = "AtccGTTAC"
-print(validateSeq(rndDNAstr))
-errorDNAstr = "AtccGTTACX"
-print(validateSeq(errorDNAstr))
 
 # How can we generate random sequences?! Let's create a random DNA sequence for testing
 import random
 randDNAStr = ''.join([random.choice(Nucleotides)
                       for nuc in range(20)])
-print(validateSeq(randDNAStr))
+# NB: The "import 'random'" is a MODULE on Python
 
-# Testing the nucleotide count function
-print(countNucFrequency(randDNAStr))
 
-# To make sure that you are counting the validated sequence, do this:
-DNAstr = validateSeq(rndDNAstr)
-print(countNucFrequency(DNAstr))
+# Let's make a function that can count nucleotides. We will define this function with dictionaries and for loop.
+def countNucFrequency(seq):
+    tmpFreqDict = {"A":0, "C":0, "G":0, "T":0}
+    for nuc in seq:
+        tmpFreqDict[nuc] += 1
+    return tmpFreqDict
